@@ -8,21 +8,61 @@ class AddNoteBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 35),
-            CustomTextField(hint: 'Title'),
-            SizedBox(height: 18),
-            CustomTextField(hint: 'Content', maxLines: 5),
-            SizedBox(height: 30),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      child: SingleChildScrollView(child: AddNoteForm()),
+    );
+  }
+}
 
-            CustomButton(),
-            SizedBox(height: 10),
-          ],
-        ),
+class AddNoteForm extends StatefulWidget {
+  const AddNoteForm({super.key});
+
+  @override
+  State<AddNoteForm> createState() => _AddNoteFormState();
+}
+
+class _AddNoteFormState extends State<AddNoteForm> {
+  final GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+
+  String? title, subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      autovalidateMode: autoValidateMode,
+      key: formKey,
+      child: Column(
+        children: [
+          SizedBox(height: 35),
+          CustomTextField(
+            hint: 'Title',
+            onSaved: (value) {
+              title = value;
+            },
+          ),
+          SizedBox(height: 18),
+          CustomTextField(
+            hint: 'Content',
+            maxLines: 5,
+            onSaved: (value) {
+              title = value;
+            },
+          ),
+          SizedBox(height: 30),
+          CustomButton(
+            onTap: () {
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
+              } else {
+                autoValidateMode = AutovalidateMode.always;
+                setState(() {});
+              }
+            },
+          ),
+          SizedBox(height: 10),
+        ],
       ),
     );
   }
