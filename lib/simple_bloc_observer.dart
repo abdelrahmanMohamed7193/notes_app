@@ -4,17 +4,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SimpleBlocObserver implements BlocObserver {
   @override
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
+    print('////////////////////////////////////////////////');
     debugPrint('change = $change');
+    print('////////////////////////////////////////////////');
   }
 
   @override
   void onClose(BlocBase<dynamic> bloc) {
-    // TODO: implement onClose
+    print('////////////////////////////////////////////////');
+    debugPrint('clos = $bloc');
+    print('////////////////////////////////////////////////');
   }
 
   @override
   void onCreate(BlocBase<dynamic> bloc) {
-    // TODO: implement onCreate
+    print('////////////////////////////////////////////////');
+    debugPrint('create = $bloc');
+    print('////////////////////////////////////////////////');
   }
 
   @override
