@@ -46,6 +46,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           ),
           SizedBox(height: 30),
           ColorsList(),
+          SizedBox(height: 30),
           BlocBuilder<AddNotesCubit, AddNotesStates>(
             builder: (context, state) {
               return CustomButton(
