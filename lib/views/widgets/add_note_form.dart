@@ -6,6 +6,7 @@ import 'package:notes1_app/cubits/add_note_cubit/add_note_states.dart';
 import 'package:notes1_app/models/note_model.dart';
 import 'package:notes1_app/views/widgets/ucsotm_button.dart';
 
+import 'colors_list_view.dart';
 import 'custom_text_field.dart';
 
 class AddNoteForm extends StatefulWidget {
@@ -44,6 +45,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             },
           ),
           SizedBox(height: 30),
+          ColorsList(),
           BlocBuilder<AddNotesCubit, AddNotesStates>(
             builder: (context, state) {
               return CustomButton(
